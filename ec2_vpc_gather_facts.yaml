@@ -9,3 +9,7 @@
       region: us-east-2
       filters:
         "tag:Name": Default-VPC
+      register: vpc_name
+  - debug:
+      msg: vpc_name
+      
