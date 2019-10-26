@@ -25,7 +25,7 @@
       debug:
         var: my_vpc_info.vpcs[0].vpc_id
 
-# Public subnets created steps 
+# ------------------PUBLIC-SUBNET-STARTS HERE-------------------
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         region: "{{region}}"
