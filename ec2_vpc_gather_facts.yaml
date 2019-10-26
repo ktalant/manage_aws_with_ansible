@@ -1,4 +1,4 @@
-- name: EC2 state (start, stop, restart,)
+- name: VPC gather facts
   hosts: localhost
   connection: local
   gather_facts: false
@@ -10,6 +10,4 @@
       filters:
         "tag:Name": Default-VPC
       register: vpc_name
-  - debug:
-      msg: vpc_name
-      
+  
