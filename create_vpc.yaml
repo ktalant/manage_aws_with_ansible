@@ -46,6 +46,7 @@
 
     - name: subnet id of "{{az1}}"
       ec2_vpc_subnet_facts:
+        region: "{{region}}"
         filters:
           vpc-id: "{{my_vpc_info.vpcs[0].vpc_id}}"
           "tag:Name:": my_public_subnet_1
