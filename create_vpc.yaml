@@ -71,6 +71,7 @@
 # ------------------GATHER FACTS TO GET PUBLIC-SUBNET-IDS-------------------
     - name: Gather Facts of subnets to get subnet IDs 
       ec2_vpc_subnet_facts:
+        region: "{{region}}"
         filters:
           vpc-id: "{{my_vpc_info.vpcs[0].vpc_id}}"
           "tag:Name": "{{ item }}"
