@@ -1,5 +1,7 @@
 - name: VPC gather facts
   hosts: localhost
+  vars:
+    my_vpc_id: vpc_facts.vpcs[0].vpc_id
   connection: local
   gather_facts: false
   become: yes
@@ -12,7 +14,7 @@
         "tag:Name": talant_VPC_ohio
     register: vpc_facts
   - debug:
-      var: vpc_facts.vpcs[0].vpc_id
+      msg: my_vpc_id
 
   
     
