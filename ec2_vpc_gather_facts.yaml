@@ -9,7 +9,7 @@
     ec2_vpc_net_facts:
       region: us-east-2
       filters: 
-        "tag:Name": Default-VPC
+        "tag:Name": talant_VPC_ohio
     register: vpc_facts
   - debug:
       var: vpc_facts.vpcs[0].vpc_id
