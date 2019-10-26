@@ -32,7 +32,7 @@
         var: my_vpc_info.vpcs[0].vpc_id
 
 # ------------------PUBLIC-SUBNET-STARTS HERE-------------------
-# ------------------PUBLIC-SUBNET-1-------------------
+# ------------------PUBLIC-SUBNET-1 and GATHER FACTS-------------------
 
     - name: Create subnet in "{{name_of_VPC}}"
       ec2_vpc_subnet:
@@ -42,7 +42,17 @@
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.1.0/24
         resource_tags:
-          Name: my_public_subnet   
+          Name: my_public_subnet_1   
+
+    - name: subnet id of "{{az1}}"
+      ec2_vpc_subnet_facts:
+        filters:
+          vpc-id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+          "tag:Name:": my_public_subnet_1
+      register: public_subnet1
+
+    - debug:
+        var: public_subnet1    
 
 
 # ------------------PUBLIC-SUBNET-2-------------------
@@ -54,7 +64,7 @@
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.2.0/24
         resource_tags:
-          Name: my_public_subnet
+          Name: my_public_subnet_2
 
 
 # ------------------PUBLIC-SUBNET-3-------------------
@@ -66,10 +76,10 @@
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.3.0/24
         resource_tags:
-          Name: my_public_subnet
+          Name: my_public_subnet_3
 # ------------------PUBLIC-SUBNET-ENDS HERE-------------------
  
-# ------------------create IGW to VPC-------------------
+# ------------------create IGW and attach to new created VPC-------------------
     - name: create an IGW to "{{name_of_VPC}}"
       ec2_vpc_igw:
         region: "{{region}}"
@@ -79,6 +89,18 @@
           Name: "{{name_of_VPC}}"
       register: igw
 
-
+# ------------------create Public-Route-Table for public subnets-------------------
+    - name: Set up public subnet route table
+      ec2_vpc_route_table:
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+        region: "{{region}}"
+        tags:
+          Name: Public-Route-Table
+        subnets:
+          - "{{ vpn_subnet.subnet_id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ igw.gateway_id }}"
+      register: public_route_table
          
 
