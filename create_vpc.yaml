@@ -5,25 +5,25 @@
   become: yes
   become_method: sudo
   tasks:
-  
+
 # ------------------VPC CREATION STARTS HERE-------------------
 
     - name: create VPC with tags
       ec2_vpc_net:
-        name: talant_VPC_ohio
+        name: "{{name_of_VPC}}"
         cidr_block: 10.0.0.0/16
         region: "{{region}}"
         tags:
-          name: talant_VPC_ohio
+          name: "{{name_of_VPC}}"
         tenancy: default
 
 # ------------------VPC GATHER FACTS-------------------
 
-    - name: gather facts to get vpc_id of talant_VPC_ohio
+    - name: gather facts to get vpc_id of "{{name_of_VPC}}"
       ec2_vpc_net_facts:
         region: "{{region}}"
         filters: 
-          "tag:Name": talant_VPC_ohio
+          "tag:Name": "{{name_of_VPC}}"
       
 
     - name: Display VPC facts(information)
@@ -33,7 +33,7 @@
 # ------------------PUBLIC-SUBNET-STARTS HERE-------------------
 # ------------------PUBLIC-SUBNET-1-------------------
 
-    - name: Create subnet in talant_VPC_ohio
+    - name: Create subnet in "{{name_of_VPC}}"
       ec2_vpc_subnet:
         region: "{{region}}"
         az: "{{az1}}"
@@ -45,7 +45,7 @@
 
 
 # ------------------PUBLIC-SUBNET-2-------------------
-    - name: Create subnet in talant_VPC_ohio
+    - name: Create subnet in "{{name_of_VPC}}"
       ec2_vpc_subnet:
         region: "{{region}}"
         az: "{{az2}}"
@@ -57,7 +57,7 @@
 
 
 # ------------------PUBLIC-SUBNET-3-------------------
-    - name: Create subnet in talant_VPC_ohio
+    - name: Create subnet in "{{name_of_VPC}}"
       ec2_vpc_subnet:
         region: "{{region}}"
         az: "{{az3}}"
