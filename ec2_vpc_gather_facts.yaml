@@ -1,7 +1,5 @@
 - name: VPC gather facts
   hosts: localhost
-  vars:
-    my_vpc_id: vpc_facts.vpcs[0].vpc_id
   connection: local
   gather_facts: false
   become: yes
@@ -11,11 +9,15 @@
     ec2_vpc_net_facts:
       region: us-east-2
       filters: 
-        "tag:Name": talant_VPC_ohio
+        "tag:Name": Default-VPC
     register: vpc_facts
-  - debug:
-      msg: my_vpc_id
 
+  - name: Print VPC details
+    debug:
+      var: vpc_facts
+
+      
+  
   
     
 
