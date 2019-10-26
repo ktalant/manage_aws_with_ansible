@@ -53,4 +53,14 @@
         resource_tags:
           Name: my_public_subnet
 # --------------------END OF PUBLIC SUBNET---------------------------------- 
+    - name: route table id
+      ec2_vpc_route_table_facts:
+        region: us-east-2
+        filters:
+          vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+      register: talant_route_table
+
+    - debug:
+        var: talant_route_table
+         
 
