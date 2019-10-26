@@ -29,7 +29,7 @@
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         region: "{{region}}"
-        az: "{{az}}"
+        az: "{{az1}}"
         state: present
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.1.0/24
@@ -39,7 +39,7 @@
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         region: "{{region}}"
-        az: "{{az}}"
+        az: "{{az2}}"
         state: present
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.2.0/24
@@ -49,7 +49,7 @@
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         region: "{{region}}"
-        az: "{{az}}"
+        az: "{{az3}}"
         state: present
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.3.0/24
