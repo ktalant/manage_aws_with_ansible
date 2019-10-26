@@ -14,6 +14,21 @@
           name: talant_VPC_ohio
         tenancy: default
 
+    - name: gather facts to get vpc_id of talant_VPC_ohio
+      ec2_vpc_net_facts:
+        region: us-east-2
+        filters: 
+          "tag:Name": talant_VPC_ohio
+        register: vpc_facts 
+
+    - name: Create subnet in talant_VPC_ohio
+      ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{vpc_facts.vpcs[0].vpc_id}}"
+        cidr: 10.0.1.16/24
+        resource_tags:
+          Name: public   
+
      
 
      
