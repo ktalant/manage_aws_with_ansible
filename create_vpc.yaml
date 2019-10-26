@@ -75,7 +75,7 @@
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         state: present
         resource_tags:
-          Name: "{{name_of_VPC}}"-IGW
+          Name: "{{name_of_VPC}}"
       register: igw
 
 
