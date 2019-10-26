@@ -14,7 +14,9 @@
 
   - name: Print VPC details
     debug:
-      var: vpc_facts.vpcs[0].id
+      var: vpc_facts.vpcs[0].vpc_id
+
+  
 
 
   

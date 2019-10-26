@@ -1,0 +1,27 @@
+- name: EC2 creates VPC on ohio region 
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: yes
+  become_method: sudo
+  tasks:
+- name: gather facts of default VPC
+    ec2_vpc_net_facts:
+      region: us-east-2
+      filters: 
+        "tag:Name": Default-VPC
+    register: vpc_facts
+
+  - name: Print VPC details
+    debug:
+      var: vpc_facts.vpcs[0].id
+
+    - name: route table id
+      ec2_vpc_route_table_facts:
+        region: us-east-2
+        filters:
+          vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+      register: route
+
+    - debug:
+        var: talant_route_table.route_table_id 
