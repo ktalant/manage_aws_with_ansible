@@ -19,13 +19,13 @@
         region: us-east-2
         filters: 
           "tag:Name": talant_VPC_ohio
-        register: vpc_facts 
+      register: my_vpc_info 
 
 # Public subnets created steps 
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         state: present
-        vpc_id: "{{vpc_facts.vpcs[0].vpc_id}}"
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.1.16/24
         resource_tags:
           Name: public   
@@ -33,7 +33,7 @@
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         state: present
-        vpc_id: "{{vpc_facts.vpcs[0].vpc_id}}"
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.2.16/24
         resource_tags:
           Name: public
@@ -41,7 +41,7 @@
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         state: present
-        vpc_id: "{{vpc_facts.vpcs[0].vpc_id}}"
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.3.16/24
         resource_tags:
           Name: public
