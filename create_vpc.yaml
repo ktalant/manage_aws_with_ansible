@@ -24,6 +24,7 @@
         region: "{{region}}"
         filters: 
           "tag:Name": "{{name_of_VPC}}"
+      register: my_vpc_info
       
 
     - name: Display VPC facts(information)
