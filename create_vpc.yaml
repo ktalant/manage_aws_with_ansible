@@ -69,6 +69,16 @@
           Name: my_public_subnet
 # ------------------PUBLIC-SUBNET-ENDS HERE-------------------
  
+# ------------------create IGW to VPC-------------------
+    - name: create an IGW to "{{name_of_VPC}}"
+      ec2_vpc_igw:
+        name: "{{name_of_VPC}}"-IGW
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+        state: present
+        resource_tags:
+          Name: "{{name_of_VPC}}"-IGW
+      register: igw
+
 
          
 
