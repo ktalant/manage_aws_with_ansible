@@ -12,7 +12,7 @@
 #        "tag:Name": Default-VPC
     register: vpc-facts
   - debug:
-      msg: vpc-facts
+      var: vpc-facts
 
   
     
