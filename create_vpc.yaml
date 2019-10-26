@@ -21,7 +21,7 @@
           "tag:Name": talant_VPC_ohio
         register: vpc_facts 
 
-# Public subnets created below
+# Public subnets created steps 
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         state: present
