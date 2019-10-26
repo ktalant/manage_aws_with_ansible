@@ -13,13 +13,13 @@
         tags:
           name: talant_VPC_ohio
         tenancy: default
-
-    - name: gather facts to get vpc_id of talant_VPC_ohio
-      ec2_vpc_net_facts:
-        region: "{{region}}"
-        filters: 
-          "tag:Name": talant_VPC_ohio
       register: my_vpc_info 
+    # - name: gather facts to get vpc_id of talant_VPC_ohio
+    #   ec2_vpc_net_facts:
+    #     region: "{{region}}"
+    #     filters: 
+    #       "tag:Name": talant_VPC_ohio
+      
 
     - name: Display VPC facts(information)
       debug:
