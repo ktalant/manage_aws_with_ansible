@@ -5,6 +5,9 @@
   become: yes
   become_method: sudo
   tasks:
+  
+# ------------------VPC CREATION STARTS HERE-------------------
+
     - name: create VPC with tags
       ec2_vpc_net:
         name: talant_VPC_ohio
@@ -13,12 +16,14 @@
         tags:
           name: talant_VPC_ohio
         tenancy: default
-      register: my_vpc_info 
-    # - name: gather facts to get vpc_id of talant_VPC_ohio
-    #   ec2_vpc_net_facts:
-    #     region: "{{region}}"
-    #     filters: 
-    #       "tag:Name": talant_VPC_ohio
+
+# ------------------VPC GATHER FACTS-------------------
+
+    - name: gather facts to get vpc_id of talant_VPC_ohio
+      ec2_vpc_net_facts:
+        region: "{{region}}"
+        filters: 
+          "tag:Name": talant_VPC_ohio
       
 
     - name: Display VPC facts(information)
@@ -26,6 +31,8 @@
         var: my_vpc_info.vpcs[0].vpc_id
 
 # ------------------PUBLIC-SUBNET-STARTS HERE-------------------
+# ------------------PUBLIC-SUBNET-1-------------------
+
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         region: "{{region}}"
@@ -36,6 +43,8 @@
         resource_tags:
           Name: my_public_subnet   
 
+
+# ------------------PUBLIC-SUBNET-2-------------------
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         region: "{{region}}"
@@ -46,6 +55,8 @@
         resource_tags:
           Name: my_public_subnet
 
+
+# ------------------PUBLIC-SUBNET-3-------------------
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
         region: "{{region}}"
@@ -55,7 +66,8 @@
         cidr: 10.0.3.0/24
         resource_tags:
           Name: my_public_subnet
-# --------------------END OF PUBLIC SUBNET---------------------------------- 
+# ------------------PUBLIC-SUBNET-ENDS HERE-------------------
+ 
 
          
 
