@@ -10,9 +10,9 @@
       region: us-east-2
 #      filters: 
 #        "tag:Name": Default-VPC
-    register: vpc-facts
+    register: vpc_facts
   - debug:
-      var: vpc-facts
+      var: vpc_facts
 
   
     
