@@ -24,29 +24,29 @@
 # Public subnets created steps 
     - name: Create subnet in talant_VPC_ohio
       ec2_vpc_subnet:
-        region: "{{region}}"
+        region: {{region}}
         state: present
-        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+        vpc_id: {{my_vpc_info.vpcs[0].vpc_id}}
         cidr: 10.0.1.16/24
         resource_tags:
           Name: public   
 
-    - name: Create subnet in talant_VPC_ohio
-      ec2_vpc_subnet:
-        region: "{{region}}"
-        state: present
-        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
-        cidr: 10.0.2.16/24
-        resource_tags:
-          Name: public
+#     - name: Create subnet in talant_VPC_ohio
+#       ec2_vpc_subnet:
+#         region: "{{region}}"
+#         state: present
+#         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+#         cidr: 10.0.2.16/24
+#         resource_tags:
+#           Name: public
 
-    - name: Create subnet in talant_VPC_ohio
-      ec2_vpc_subnet:
-        region: "{{region}}"
-        state: present
-        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
-        cidr: 10.0.3.16/24
-        resource_tags:
-          Name: public
-# --------------------END OF PUBLIC SUBNET---------------------------------- 
+#     - name: Create subnet in talant_VPC_ohio
+#       ec2_vpc_subnet:
+#         region: "{{region}}"
+#         state: present
+#         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+#         cidr: 10.0.3.16/24
+#         resource_tags:
+#           Name: public
+# # --------------------END OF PUBLIC SUBNET---------------------------------- 
      
