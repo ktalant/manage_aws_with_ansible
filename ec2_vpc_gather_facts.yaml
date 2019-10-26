@@ -5,10 +5,17 @@
   become: yes
   become_method: sudo
   tasks:
-  - ec2_vpc_net_facts:
+  - name: gather facts of default VPC
+    ec2_vpc_net_facts:
       region: us-east-2
-      filters:
-        vpc-id: vpc-be96e0d6
+      filters: 
+        "tag:Name": Default-VPC
+    register: vpc-facts
+  - debug:
+      var: vpc-facts
+
+  
+    
 
 
         
