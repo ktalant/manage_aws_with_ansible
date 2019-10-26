@@ -1,0 +1,10 @@
+- name: EC2 state (start, stop, restart,)
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: yes
+  become_method: sudo
+  tasks:
+  - ec2_vpc_net_facts:
+    filters:
+      "tag:Name": Default-VPC
