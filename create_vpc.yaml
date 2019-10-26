@@ -14,11 +14,6 @@
           name: talant_VPC_ohio
         tenancy: default
 
-      - name: get VPC id 
-        ec2_vpc_net_facts:
-          region: us-east-2
-          filters:
-            "tag:Name": talant_VPC_ohio
-          
+     
 
      
