@@ -83,7 +83,7 @@
 
     - name: get my_public_subnet1  id
       debug:
-        var: subnet_facts
+        var: subnet_facts.subnets[0].id
 
     
 
