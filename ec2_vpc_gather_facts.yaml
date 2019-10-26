@@ -7,7 +7,4 @@
   tasks:
   - ec2_vpc_net_facts:
       region: us-east-2
-      filters:
-        "tag:Name": Default-VPC
-      register: vpc_name
-  
+      
