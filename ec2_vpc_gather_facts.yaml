@@ -26,7 +26,7 @@
       filters:
         vpc-id: my_vpc_id
         "tag:Name": "{{tag_of_subnet}}"
-      register: subnet_facts
+    register: subnet_facts
 
   - debug:
       var: subnet_facts
