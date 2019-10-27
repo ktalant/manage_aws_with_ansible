@@ -1,7 +1,5 @@
 - name: VPC gather facts
   hosts: localhost
-  vars:
-    my_vpc_id: vpc_facts.vpcs[0].vpc_id
   connection: local
   gather_facts: false
   become: yes
@@ -13,7 +11,7 @@
       region: "{{region}}"
       filters: 
         "tag:Name": "{{tag_of_VPC}}"
-    register: vpc_facts.vpcs[0].vpc_id
+    register: vpc_facts
 
   - name: Print VPC details
     debug:
