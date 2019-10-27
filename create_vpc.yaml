@@ -81,8 +81,8 @@
         - my_public_subnet_3
       register: subnet_facts
 
-    - debug:
-        var: subnet_facts.subnets[0].id
+    - set_fact:
+        subnet_ids: "{{ subnet_facts.subnets|map(attribute='id')|list }}"
 
     
 
