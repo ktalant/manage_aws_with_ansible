@@ -22,6 +22,7 @@
   #-------------------------------------------
   - name: Subnet get id
     ec2_vpc_subnet_facts:
+      region: "{{region}}"
       filters:
         vpc-id: my_vpc_id
         "tag:Name": "{{tag_of_subnet}}"
