@@ -12,7 +12,7 @@
     ec2_vpc_net_facts:
       region: "{{region}}"
       filters: 
-        "tag:Name": "{{tag_of_subnet}}"
+        "tag:Name": "{{tag_of_VPC}}"
     register: vpc_facts.vpcs[0].vpc_id
 
   - name: Print VPC details
@@ -25,7 +25,7 @@
       region: "{{region}}"
       filters:
         vpc-id: my_vpc_id
-        "tag:Name": "{{tag_of_subnet}}"
+        "tag:Name": "{{tag_of_VPC}}"
     register: subnet_facts
 
   - debug:
