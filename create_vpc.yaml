@@ -85,6 +85,8 @@
       debug:
         var: subnet_facts.subnets[0].id
 
+  
+
     
 
 # ------------------create IGW and attach to new created VPC-------------------
