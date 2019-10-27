@@ -73,6 +73,7 @@
       ec2_vpc_subnet_facts:
         region: "{{region}}"
         filters:
+          vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
           "tag:Name": "{{ item }}"
       loop:
         - my_public_subnet_1
@@ -83,7 +84,7 @@
     - debug:
         var: subnet_facts
     - debug:
-        var: subnet_facts.results[].subnets[0].subnet_id
+        var: subnet_facts.subnets[0].subnet_id
     # - debug: 
     #     var: subnet_facts.subnets[1].subnet_id
     # - debug: 
