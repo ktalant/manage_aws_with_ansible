@@ -17,19 +17,19 @@
 
   - name: Print VPC details
     debug:
-      var: my_vpc_id
+      var: vpc_facts.vpcs[0].vpc_id
 
   #-------------------------------------------
   - name: Subnet get id
     ec2_vpc_subnet_facts:
       region: "{{region}}"
       filters:
-        vpc-id: my_vpc_id
+        vpc-id: vpc_facts.vpcs[0].vpc_id
         
     register: subnet_facts
 
   - debug:
-      var: subnet_facts.subnets[0].subnet_id
+      var: subnet_facts
 
 
   
