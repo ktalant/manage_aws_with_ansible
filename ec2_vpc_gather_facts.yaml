@@ -5,16 +5,29 @@
   become: yes
   become_method: sudo
   tasks:
+  #-------------------------------------------
   - name: gather facts of default VPC
     ec2_vpc_net_facts:
       region: "{{region}}"
       filters: 
-        "tag:Name": Default-VPC
+        "tag:Name": "{{tag_of_subnet}}"
     register: vpc_facts
 
   - name: Print VPC details
     debug:
       var: vpc_facts.vpcs[0].vpc_id
+
+  #-------------------------------------------
+  - name: Subnet get id
+    ec2_vpc_subnet_facts:
+      filters:
+        vpc-id: vpc-abcdef00
+        "tag:Name": "{{tag_of_subnet}}"
+      register: subnet_facts
+
+  - debug:
+      var: subnet_facts
+
 
   
 
