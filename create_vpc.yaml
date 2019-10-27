@@ -82,7 +82,7 @@
       register: subnet_facts
 
     - debug:
-        var: subnet_facts.subnets_id
+        var: "{{ (vpc_subnet_facts.subnets | selectattr('tags.Name','equalto','my_public_subnet_1') | first).id }}"
        
 
 
