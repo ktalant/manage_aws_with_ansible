@@ -25,7 +25,7 @@
       region: "{{region}}"
       filters:
         vpc-id: my_vpc_id
-        "tag:Name": "{{tag_of_VPC}}"
+        
     register: subnet_facts
 
   - debug:
