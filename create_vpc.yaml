@@ -82,9 +82,9 @@
       register: subnet_facts
 
     - debug:
-        var: subnet_facts.subnets.subet_id
+        var: subnet_facts.subnets.subnet_id
 
-        
+
 
     
 
