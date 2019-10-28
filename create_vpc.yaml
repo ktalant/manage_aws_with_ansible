@@ -164,3 +164,18 @@
         subnet_ids2: "{{ subnet_facts2.results|map(attribute='subnets.0.id')|list }}"
     - debug:
         var: subnet_ids2
+
+# ------------------create PRIVATE-Route-Table for public subnets-------------------
+    - name: Set up public subnet route table
+      ec2_vpc_route_table:
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+        region: "{{region}}"
+        tags:
+          Name: Public-Route-Table
+        subnets:
+          - "{{subnet_ids2}}"
+          # - "{{subnet_ids2[1]}}"
+          # - "{{subnet_ids2[2]}}"
+        routes:
+          - dest: 10.0.0.0/16
+      register: private_route_table
