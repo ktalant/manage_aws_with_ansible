@@ -1,0 +1,37 @@
+- name: EC2 creates VPC on ohio region 
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: yes
+  become_method: sudo
+  tasks:
+# ------------------VPC GATHER FACTS-------------------
+
+    - name: gather facts to get vpc_id of "{{name_of_VPC}}"
+      ec2_vpc_net_facts:
+        region: "{{region}}"
+        filters: 
+          "tag:Name": "{{name_of_VPC}}"
+      register: my_vpc_info
+      
+
+    - name: Display VPC facts(information)
+      debug:
+        var: my_vpc_info.vpcs[0].vpc_id
+
+# ------------------CREATE SG -------------------
+
+    - name: SG creation for "{{name_of_VPC}}"
+      ec2_group:
+        name: "{{ name }}"
+        description: sg with rule descriptions
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+        # profile: "{{ aws_profile }}"
+        region: us-east-1
+        rules:
+          - proto: tcp
+            ports:
+            - 80
+            - 22
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on ports 80 and 22 
