@@ -89,6 +89,7 @@
         resource_tags:
           Name: my_public_subnet_3
 # ------------------PUBLIC-SUBNET-ENDS HERE-------------------
+
 # ------------------GATHER FACTS TO GET PUBLIC-SUBNET-IDS-------------------
     - name: Gather Facts of subnets to get subnet IDs 
       ec2_vpc_subnet_facts:
