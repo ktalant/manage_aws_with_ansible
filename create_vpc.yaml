@@ -103,9 +103,9 @@
         tags:
           Name: Public-Route-Table
         subnets:
-          - subnet_ids[0]
-          - subnet_ids[1]
-          - subnet_ids[2]
+          - "{{subnet_ids[0]}}"
+          - "{{subnet_ids[1]}}"
+          - "{{subnet_ids[2]}}"
         routes:
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw.gateway_id }}"
