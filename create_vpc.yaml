@@ -31,6 +31,19 @@
       debug:
         var: my_vpc_info.vpcs[0].vpc_id
 
+    - name: Get current route table 
+      ec2_vpc_route_table_facts:
+          region: "{{region}}"
+          filters:
+            vpc-id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+          resource_tags:
+            Name: Talant_test 
+
+          register: route_facts
+
+      - debug:
+          var: route_facts.route_tables[0].id
+
 # ------------------PUBLIC-SUBNET-STARTS HERE-------------------
 # ------------------PUBLIC-SUBNET-1 -------------------
 
