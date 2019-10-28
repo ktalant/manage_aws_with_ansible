@@ -73,7 +73,6 @@
       ec2_vpc_subnet_facts:
         region: "{{region}}"
         filters:
-          # vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
           "tag:Name": "{{ item }}"
       with_items:
         - my_public_subnet_1
@@ -86,32 +85,28 @@
     - debug:
         var: subnet_ids
 
-    
-
-    
-
 # ------------------create IGW and attach to new created VPC-------------------
-    # - name: create an IGW to "{{name_of_VPC}}"
-    #   ec2_vpc_igw:
-    #     region: "{{region}}"
-    #     vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
-    #     state: present
-    #     resource_tags:
-    #       Name: "{{name_of_VPC}}"
-    #   register: igw
+    - name: create an IGW to "{{name_of_VPC}}"
+      ec2_vpc_igw:
+        region: "{{region}}"
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+        state: present
+        resource_tags:
+          Name: "{{name_of_VPC}}"
+      register: igw
 
 # ------------------create Public-Route-Table for public subnets-------------------
-    # - name: Set up public subnet route table
-    #   ec2_vpc_route_table:
-    #     vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
-    #     region: "{{region}}"
-    #     tags:
-    #       Name: Public-Route-Table
-    #     subnets:
-    #       - "{{ subnet_facts.subnets|map(attribute='id')|list }}"
-    #     routes:
-    #       - dest: 0.0.0.0/0
-    #         gateway_id: "{{ igw.gateway_id }}"
-    #   register: public_route_table
+    - name: Set up public subnet route table
+      ec2_vpc_route_table:
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+        region: "{{region}}"
+        tags:
+          Name: Public-Route-Table
+        subnets:
+          - "{{ subnet_facts.subnets|map(attribute='id')|list }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ igw.gateway_id }}"
+      register: public_route_table
          
 
