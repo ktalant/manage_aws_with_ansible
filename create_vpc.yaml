@@ -75,7 +75,7 @@
         filters:
           vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
           "tag:Name": "{{ item }}"
-      loop:
+      with_items:
         - my_public_subnet_1
         - my_public_subnet_2
         - my_public_subnet_3
