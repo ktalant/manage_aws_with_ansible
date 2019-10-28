@@ -23,13 +23,11 @@
       region: "{{region}}"
       filters:
         vpc-id: vpc_facts.vpcs[0].vpc_id
-        "tag:Name": "{{items}}"
-      loop:
-        - sub1
-        - sub2
-        - sub3
-        
-        
+        "tag:Name": "{{ item }}"
+    loop:
+      - sub1
+      - sub2
+      - sub3
     register: subnet_facts
 
   - debug:
