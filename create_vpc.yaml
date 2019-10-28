@@ -33,13 +33,10 @@
 
     - name: Get current route table 
       ec2_vpc_route_table_facts:
-          region: "{{region}}"
-          filters:
-            vpc-id: "{{my_vpc_info.vpcs[0].vpc_id}}"
-          resource_tags:
-            Name: Talant_test 
-
-          register: route_facts
+        region: "{{region}}"
+        filters:
+          vpc-id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+    register: route_facts
 
       - debug:
           var: route_facts.route_tables[0].id

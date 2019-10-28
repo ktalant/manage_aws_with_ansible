@@ -21,8 +21,6 @@
       region: "{{region}}"
       filters:
         vpc-id: "{{vpc_facts.vpcs[0].vpc_id}}"
-      resource_tags:
-        Name: Talant_test
     register: route_facts
 
   - debug:
