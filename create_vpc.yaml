@@ -83,7 +83,7 @@
     - set_fact:
         subnet_ids: "{{ subnet_facts.results|map(attribute='subnets.0.id')|list }}"
     - debug:
-        var: subnet_ids[0]
+        var: subnet_ids
 
 # ------------------create IGW and attach to new created VPC-------------------
     - name: create an IGW to "{{name_of_VPC}}"
@@ -103,7 +103,9 @@
         tags:
           Name: Public-Route-Table
         subnets:
-          - "{{ subnet_facts.subnets|map(attribute='id')|list }}"
+          - subnet_id[0]
+          - subnet_id[1]
+          - subnet_id[2]
         routes:
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw.gateway_id }}"
