@@ -83,8 +83,8 @@
 
     - debug:
         var: subnet_facts
-    - debug:
-        var: subnet_facts.subnets[0].subnet_id
+    # - debug:
+    #     var: subnet_facts.subnets[0].subnet_id
     # - debug: 
     #     var: subnet_facts.subnets[1].subnet_id
     # - debug: 
