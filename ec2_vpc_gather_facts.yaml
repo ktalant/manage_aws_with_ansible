@@ -17,25 +17,34 @@
     debug:
       var: vpc_facts.vpcs[0].vpc_id
 
-  #-------------------------------------------
-  - name: Subnet get id
-    ec2_vpc_subnet_facts:
-      region: "{{region}}"
-      filters:
-        vpc-id: "{{vpc_facts.vpcs[0].vpc_id}}"
-        "tag:Name": "{{ item }}"
-    with_items:
-      - sub1
-      - sub2
-      - sub3
-    register: subnet_facts
+  - ec2_vpc_route_table_facts:
+    filters:
+      vpc-id: "{{vpc_facts.vpcs[0].vpc_id}}"
+    register: route_facts
 
-  - set_fact:
-      subnet_ids: "{{ subnet_facts.results|map(attribute='subnets.0.id')|list }}"
   - debug:
-      var: subnet_ids
+      var: route_facts
 
-  
+  #-------------------------------------------
+  # - name: Subnet get id
+  #   ec2_vpc_subnet_facts:
+  #     region: "{{region}}"
+  #     filters:
+  #       vpc-id: "{{vpc_facts.vpcs[0].vpc_id}}"
+  #       "tag:Name": "{{ item }}"
+  #   with_items:
+  #     - sub1
+  #     - sub2
+  #     - sub3
+  #   register: subnet_facts
+
+  # - set_fact:
+  #     subnet_ids: "{{ subnet_facts.results|map(attribute='subnets.0.id')|list }}"
+  # - debug:
+  #     var: subnet_ids
+
+
+
 
 
   
