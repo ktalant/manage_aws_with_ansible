@@ -81,7 +81,7 @@
       register: subnet_facts1
 
     - set_fact:
-        subnet_ids: "{{ subnet_facts1.results|map(attribute='subnets.0.id')|list }}"
+        subnet_ids1: "{{ subnet_facts1.results|map(attribute='subnets.0.id')|list }}"
     - debug:
         var: subnet_ids1
 
