@@ -24,7 +24,7 @@
     register: route_facts
 
   - debug:
-      var: route_facts
+      var: route_facts.id
 
   #-------------------------------------------
   # - name: Subnet get id
