@@ -56,6 +56,7 @@
         state: present
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.2.0/24
+        map_public: true
         resource_tags:
           Name: my_public_subnet_2
 
@@ -68,6 +69,7 @@
         state: present
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.3.0/24
+        map_public: true
         resource_tags:
           Name: my_public_subnet_3
 # ------------------PUBLIC-SUBNET-ENDS HERE-------------------
