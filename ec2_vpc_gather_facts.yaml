@@ -24,6 +24,7 @@
       filters:
         vpc-id: vpc_facts.vpcs[0].vpc_id
         
+        
     register: subnet_facts
 
   - debug:
