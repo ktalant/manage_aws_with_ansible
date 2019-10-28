@@ -27,7 +27,7 @@
         description: sg with rule descriptions
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         # profile: "{{ aws_profile }}"
-        region: us-east-1
+        region: "{{region}}"
         rules:
           - proto: tcp
             ports:
