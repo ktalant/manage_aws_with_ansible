@@ -28,6 +28,8 @@
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         # profile: "{{ aws_profile }}"
         region: "{{region}}"
+        resource_tags:
+          Name: my-sg-22-80
         rules:
           - proto: tcp
             ports:
