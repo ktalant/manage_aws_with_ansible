@@ -32,6 +32,8 @@
 
   - set_fact:
       subnet_ids: "{{ subnet_facts.results|map(attribute='subnets.0.id')|list }}"
+  - debug:
+      var: subnet_ids
 
   
 
