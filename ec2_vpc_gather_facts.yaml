@@ -18,8 +18,8 @@
       var: vpc_facts.vpcs[0].vpc_id
 
   - ec2_vpc_route_table_facts:
-    filters:
-      vpc-id: "{{vpc_facts.vpcs[0].vpc_id}}"
+      filters:
+        vpc-id: "{{vpc_facts.vpcs[0].vpc_id}}"
     register: route_facts
 
   - debug:
