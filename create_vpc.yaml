@@ -43,6 +43,8 @@
         state: present
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         cidr: 10.0.1.0/24
+        map_public_ip_on_launch:
+          state: present
         resource_tags:
           Name: my_public_subnet_1   
 
@@ -169,7 +171,7 @@
         var: subnet_ids2
 
 # ------------------create PRIVATE-Route-Table for public subnets-------------------
-    - name: Set up public subnet route table
+    - name: Set up private subnet route table
       ec2_vpc_route_table:
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         region: "{{region}}"
