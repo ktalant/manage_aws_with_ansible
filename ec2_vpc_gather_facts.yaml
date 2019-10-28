@@ -23,7 +23,7 @@
       region: "{{region}}"
       filters:
         vpc-id: vpc_facts.vpcs[0].vpc_id
-        "tag:Name": "{{item}}"
+        "tag:Name": "{{items}}"
       loop:
         - sub1
         - sub2
