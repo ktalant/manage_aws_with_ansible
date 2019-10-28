@@ -171,7 +171,7 @@
         vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
         region: "{{region}}"
         tags:
-          Name: Public-Route-Table
+          Name: Private-Route-Table
         subnets:
           - "{{subnet_ids2[0]}}"
           - "{{subnet_ids2[1]}}"
