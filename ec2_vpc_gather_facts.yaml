@@ -28,10 +28,10 @@
       - sub1
       - sub2
       - sub3
-    register: subnet_facts.subnets[0].subnet_id
+    register: subnet_facts
 
   - debug:
-      var: subnet_facts
+      var: "{{subnet_facts.subnets[0].subnet_id}}"
 
   
 
