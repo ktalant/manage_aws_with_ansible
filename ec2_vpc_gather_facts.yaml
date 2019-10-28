@@ -20,9 +20,9 @@
   #-------------------------------------------
   - name: Subnet get id
     ec2_vpc_subnet_facts:
-    filters:
-      vpc-id: "{{vpc_facts.vpcs[0].vpc_id}}"
-      "tag:Name": "{{ item }}"
+      filters:
+        vpc-id: "{{vpc_facts.vpcs[0].vpc_id}}"
+        "tag:Name": "{{ item }}"
     with_items:
       - sub1
       - sub2
