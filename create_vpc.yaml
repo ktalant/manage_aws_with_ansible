@@ -36,10 +36,10 @@
         region: "{{region}}"
         filters:
           vpc-id: "{{my_vpc_info.vpcs[0].vpc_id}}"
-    register: route_facts
+      register: route_facts
 
-      - debug:
-          var: route_facts.route_tables[0].id
+    - debug:
+        var: route_facts.route_tables[0].id
 
 # ------------------PUBLIC-SUBNET-STARTS HERE-------------------
 # ------------------PUBLIC-SUBNET-1 -------------------
