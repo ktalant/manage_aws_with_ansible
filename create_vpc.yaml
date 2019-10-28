@@ -31,6 +31,9 @@
       debug:
         var: my_vpc_info.vpcs[0].vpc_id
 
+
+# ------------------GET-CURRENT ROUTE-TABLE AND DELETE (we will create)-------------------
+
     - name: Get current route table 
       ec2_vpc_route_table_facts:
         region: "{{region}}"
@@ -40,6 +43,14 @@
 
     - debug:
         var: route_facts.route_tables[0].id
+
+    - name: delete current route table
+      ec2_vpc_route_table:
+        vpc_id: "{{my_vpc_info.vpcs[0].vpc_id}}"
+        region: "{{region}}"
+        route_table_id: "{{ route_facts.route_tables[0].id }}"
+        lookup: id
+        state: absent
 
 # ------------------PUBLIC-SUBNET-STARTS HERE-------------------
 # ------------------PUBLIC-SUBNET-1 -------------------
