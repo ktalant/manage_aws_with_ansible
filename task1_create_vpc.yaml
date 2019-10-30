@@ -1,4 +1,4 @@
-- name: EC2 creates VPC on ohio region 
+- name: EC2 creates VPC  
   hosts: localhost
   connection: local
   gather_facts: false
